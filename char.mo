@@ -16,6 +16,6 @@ actor {
     // toText
     public func totext(c : Char) : async Text {return Char.toText(c);};
     // isDigit
-    public func isdigit(c : Char) : async Bool {return Char.isDigit(c);};
+    public func isdigit(c : Char) : async Bool {return Char.isDigit(c);};  //yet
 
 }
