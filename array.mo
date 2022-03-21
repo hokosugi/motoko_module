@@ -132,7 +132,7 @@ actor array {
             }
         );
     };
-    // mapResult([1, 3, 10, 11])->11(Text), mapResult([1, 3, 9, 10])->[1, 3, 9, 10]
+    // mapResult([1, 3, 10, 11])->"11"(Text), mapResult([1, 3, 9, 10])->[1, 3, 9, 10]
 
     // make
     public func make(n: Nat) : async [Nat]{
@@ -141,19 +141,29 @@ actor array {
     // make(8)->[8]
 
     // vals
-    func vals(arr: [Nat]) : Iter.Iter<Nat> {
-        return arr.vals();
+    public func vals(arr: [Nat]) : async [Nat] {
+        var new_arr: [Nat] = [];
+        for (v in Array.vals(arr)){
+            new_arr := Array.append<Nat>(new_arr, [v]);
+        };
+        return new_arr;
     };
+    // vals([1, 2, 3, 4])->[1, 2, 3, 4]
 
     //keys
-    func keys(arr: [Nat]) : Iter.Iter<Nat> {
-        return arr.keys();
+    public func keys(arr: [Nat]) : async [Nat] {
+        var new_arr: [Nat] = [];
+        for (i in Array.keys(arr)){
+            new_arr := Array.append<Nat>(new_arr, [i]);
+        };
+        return new_arr;
     };
+    // keys([1, 2, 3, 4])->[0, 1, 2, 3]
 
     //thaw
     public func thaw(arr: [Nat]) : async [Nat]{
         let mutable_arr = Array.thaw<Nat>(arr); //mutableへ変換 public関数ではmutable配列を戻り値にできない
-        return Array.freeze(mutable_arr);       //immutable 
+        return Array.freeze(mutable_arr);         //immutable 
     };
     // freeze([1, 3, 4])-> [1, 3, 4] immutable
 
@@ -162,7 +172,7 @@ actor array {
         let init_arr = Array.init<Nat>(size, initial);
         return Array.freeze(init_arr);      
     };
-    // init(3, 0)->[0, 0, 0] //mutable
+    // init(3, 0)->[0, 0, 0]  mutable
 
     // tabulate
     public func tabulate(size: Nat) : async [Nat] {
@@ -186,6 +196,4 @@ actor array {
         return Array.freeze(mutable_arr)
     };
     // tabulateVar(4)->[0, 3, 6, 9]
-
-
 };
