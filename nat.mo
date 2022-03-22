@@ -18,7 +18,7 @@ actor {
          return Nat.min(n, m);
     }; 
      // min(10, 20)->10
-dfx 
+
      // max
      public func max(n : Nat, m: Nat) : async Nat {
          return Nat.max(n, m);
