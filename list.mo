@@ -24,10 +24,10 @@ actor {
     // isNil(List.nil())->true
 
     // push
-    public func push(t: Nat, l: List<Nat>) : async List<Nat> {
-        return List.push(t, l);
+    public func push(n: Nat, l: List<Nat>) : async List<Nat> {
+        return List.push(n, l);
     };
-    // push((1, (2, (3, null)))), List.nil())->(1, (2, (3, null)))
+    // push(0, (1, (2, (3, null)))))->(0,(1, (2, (3, null))))
 
     // last
     public func last(l: List<Text>) : async ?Text {
